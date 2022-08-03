@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import Input from './common/input';
 
 class LoginForm extends Component {
+
+    state = {
+        account: {username:"" , password:""}
+    };
 
     username = React.createRef();
 
@@ -12,32 +17,46 @@ class LoginForm extends Component {
 
         e.preventDefault();
 
-        const username = this.username.current.value; //Accessing the DOM(document.getElement('username')) in react. React is about abstracting the DOM
+         //Accessing the DOM(document.getElement('username')) in react. React is about abstracting the DOM
 
 
 
 
-    }
+    };
 
-    handleChange = e => {
+    handleChange = ({currentTarget: input}) => {
      const account = {...this.state.account};
-     account.username = e.currentTarget.value;
-     this.setState({account})
+     account[input.name] = input.value;
+     this.setState({account});
 
-    }
+    };
     
     render() { 
-        return <div>
+
+        const {account} = this.state;
+        
+        
+        return (<div>
             <h1>Login</h1>
 
             <form onSubmit={this.handleSubmit}>
-                <div className="mb-3"><label htmlFor="username"></label>Username<input autoFocus ref={this.username} value={this.state.account.username} onChange={this.handleChange} id="username" type="text" className="form-control" /></div>
-                <div className="mb-3"><label htmlFor="password"></label>Password<input id="password" type="text" className="form-control" /></div>
+
+            <Input name="username"
+             value={account.username} 
+             label="Username" 
+             onChange={this.handleChange} />
+           
+            <Input name="password" 
+            value={account.password} 
+            label="Password" 
+            onChange={this.handleChange} />
+                
+            
                 <button className="btn btn-primary">Login</button>
             </form>
 
 
-        </div>;
+        </div>);
     }
 }
  

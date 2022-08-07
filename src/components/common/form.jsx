@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Joi  from 'joi-browser';
+import Input from './input';
 
 
 class Form  extends Component { // There is no render() method here as this is just a reusable component Form that can extend another component Y
@@ -70,6 +71,32 @@ class Form  extends Component { // There is no render() method here as this is j
         this.setState({data,errors});
    
        };
+
+       renderButton(label){
+
+        return (
+        <button disabled={this.validate()}className="btn btn-primary">{label}</button>
+        );
+
+       
+              
+            
+        }
+        renderInput(name, label, type = "text") {
+        
+            const {data, errors} = this.state;
+
+            return (
+
+                <Input 
+                type={type}
+                name={name} // or 'username'
+                value={data[name]} // or {data.username}
+                label={label} // or 'Username'
+                onChange={this.handleChange} 
+                error={errors[name]}/> // or {errors.username}
+            );
+            }
     
     
     

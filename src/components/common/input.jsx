@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 
-const Input = ({name, label, value, onChange,error}) => {            //functional because its a controlled component
+const Input = ({name, label, error,...rest}) => {            //functional because its a controlled component
     return ( <div className="mb-3">
         <label htmlFor={name}>{label}</label>
         <input 
     
-        value={value} 
-        onChange={onChange} 
+        {...rest} // automatically initializes other properties in the input props like: onChange,type and value
+        
         id={name} 
         name={name} 
-        type="text" 
         className="form-control" />
         {error && <div className="alert alert-danger">{error}</div> } 
         </div> 

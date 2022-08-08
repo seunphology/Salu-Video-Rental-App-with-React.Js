@@ -6,6 +6,8 @@ import{getMovies} from '../services/fakeMovieService';
 import {paginate} from '../utilities/paginate';
 import { getGenres } from '../services/fakeGenreService';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
+
 
 
 class Movies extends Component {
@@ -98,7 +100,13 @@ class Movies extends Component {
                 <div className="col-3">
                     <ListGroup items={this.state.genres} selectedItem={this.state.selectedGenre}  onItemSelect={this.handleGenreSelect}  />
                 </div>
-                <div className="col"> <p>Showing {totalCount} movies in the database</p>
+
+                
+                <div className="col"> 
+                <Link to="/movies/new" className="btn btn-primary" style={{marginBottom: 20}}>New Movie</Link>
+                <SearchBox value= {searchquery} onChange={this.handleSearch} />
+                <p>Showing {totalCount} movies in the database</p>
+                
 
                 <MoviesTable movies = {movies} sortColumn={sortColumn} onLike= {this.handleLike} onDelete= {this.handleDelete} onSort = {this.handleSort}/>
             

@@ -31,12 +31,7 @@ class LoginForm extends Form {
    
 
     
-    
-    doSubmit = () => {
-
-        console.log("Submitted"); // call the server
-    };
-
+   
     
     
     render() {  // render method is specific to a type of form

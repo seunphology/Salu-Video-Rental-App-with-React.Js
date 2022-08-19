@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from "react";
 
 const SearchBox = ({value, onChange}) => {
     return ( 
@@ -18,6 +18,6 @@ const SearchBox = ({value, onChange}) => {
 
 
      );
-}
+};
  
 export default SearchBox;

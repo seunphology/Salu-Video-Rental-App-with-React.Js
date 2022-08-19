@@ -13,7 +13,7 @@ class MovieForm extends Form {
             dailyRentalRate: ""
 
         },
-        genre: [],
+        genres: [],
         errors: {}
     };
 

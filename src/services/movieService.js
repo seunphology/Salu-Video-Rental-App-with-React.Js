@@ -3,6 +3,10 @@ import config from '../config.json';
 
 
 const apiEndpoint = config.apiUrl + "/movies";
+
+function movieUrl(id) {
+    return `${apiEndpoint}/${id}`; // To replace apiEndpoint + "/"  in the return of getmovie and saveMovie functions. Note that this function is only used here and not exported.
+}
 export function getMovies() {
 
 
@@ -13,7 +17,7 @@ export function getMovies() {
 export function getMovie(movieId) {
     
 
-    return http.get(apiEndpoint + '/' + movieId);
+    return http.get(movieUrl(movieId));
 
 }
 
@@ -22,7 +26,7 @@ export function saveMovie(movie) {
     if (movie.id) {
         const body = {...movie};
         delete body._id;
-    return    http.put(apiEndpoint + "/" + movie.id, movie,body);
+    return    http.put(movieUrl(movie._id),body);
     }
     
 
@@ -32,7 +36,7 @@ export function saveMovie(movie) {
 
 export function deleteMovie(movieId){
 
-    return http.delete(apiEndpoint + "/" + movieId );
+    return http.delete(movieUrl(movieId) );
 
 
 }

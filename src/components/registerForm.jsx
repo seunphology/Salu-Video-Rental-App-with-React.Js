@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Joi from 'joi-browser';
 import Form from './common/form';
+import * as userService from '../services/userService'; // This method of import brings all the functions in userService as methods here e.g userService.register()
+import { times } from 'lodash';
 
 class RegisterForm extends Form {
     state = { 
@@ -16,9 +18,19 @@ class RegisterForm extends Form {
 
        };
 
-       doSubmit = () => {
+       doSubmit = async () => {
+        try {
+        await userService.register(this.state.data);
+        }
+        catch (ex) {
+            if (ex.response && ex.response.status ===400) {
+                const errors = {...this.state.errors};
+                errors.username= ex.response.data;
+                this.setState({errors});
+            }
+        }
 
-        console.log("Submitted"); // call the server
+     // call the server
     };
     render() { 
         return (

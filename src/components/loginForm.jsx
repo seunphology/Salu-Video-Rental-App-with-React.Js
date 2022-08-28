@@ -1,6 +1,7 @@
 import React from 'react';
 import Joi  from 'joi-browser';
 import Form from './common/form';
+import {login} from '../services/authService';
 
 
 
@@ -18,11 +19,31 @@ class LoginForm extends Form {
     password: Joi.string().required().label("Password")
    };
 
+   doSubmit = async () => {
+
+    try {
+        const {data} = this.state;
+      const {data:jwt} = await login(data.username, data.password); // this stores the jason web token which is usually the response data sent from server when a user successfully logs in. data has already been declared,so i am giving  returned data another name;jwt
+    localStorage.setItem('token', jwt); //token from server for authentication is stored in a local storage of my browser.
+    this.props.history.push("/") // This props has an history method that can push the user back to any other route...in ths case,homepage route "/"
+    } catch (ex) {
+
+        if (ex.response && ex.response.status === 400) {
+            const errors = {...this.state.errors};
+            errors.username = ex.response.data;
+            this.setState({errors});
+        }
+        
+    }
+
+   
+    
+   
+   };
 
 
 
-    username = React.createRef();
-
+    
 
   //  componentDidMount() {
       //  this.username.current.focus(); // when this component is mounted,put focus on the element in the username.

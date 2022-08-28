@@ -24,8 +24,8 @@ class RegisterForm extends Form {
         }
         catch (ex) {
             if (ex.response && ex.response.status ===400) {
-                const errors = {...this.state.errors};
-                errors.username= ex.response.data;
+                const errors = {...this.state.errors}; // clone error
+                errors.username= ex.response.data; // error message from server
                 this.setState({errors});
             }
         }

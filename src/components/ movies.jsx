@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MoviesTable from './moviesTable';
-import {toast} from 'react-toastify'
-import ListGroup from './common/listGroup'
+import {toast} from 'react-toastify';
+import ListGroup from './common/listGroup';
 import Pagination from './common/pagination';
 import{getMovies, deleteMovie} from '../services/movieService';
 import {paginate} from '../utilities/paginate';
@@ -132,8 +132,9 @@ class Movies extends Component {
                 
                 <div className="col"> 
                 <Link to="/movies/new" className="btn btn-primary" style={{marginBottom: 20}}>New Movie</Link>
-                <SearchBox value= {searchQuery} onChange={this.handleSearch} />
+                
                 <p>Showing {totalCount} movies in the database</p>
+                <SearchBox value= {searchQuery} onChange={this.handleSearch} />
                 
 
                 <MoviesTable movies = {movies} sortColumn={sortColumn} onLike= {this.handleLike} onDelete= {this.handleDelete} onSort = {this.handleSort}/>

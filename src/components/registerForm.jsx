@@ -3,6 +3,7 @@ import Joi from 'joi-browser';
 import Form from './common/form';
 import * as userService from '../services/userService'; // This method of import brings all the functions in userService as methods here e.g userService.register()
 import { times } from 'lodash';
+import auth from '../services/authService'
 
 class RegisterForm extends Form {
     state = { 
@@ -20,7 +21,12 @@ class RegisterForm extends Form {
 
        doSubmit = async () => {
         try {
-        await userService.register(this.state.data);
+      const response =  await userService.register(this.state.data);
+      auth.loginWithJwt(response.headers["x-auth-token"]);
+      
+      window.location = '/'; // logs user in and he/she accesses the homepage immediately after registering...by reloading the app.js...componentDidMount is reloaded.
+
+      console.log(response);
         }
         catch (ex) {
             if (ex.response && ex.response.status ===400) {

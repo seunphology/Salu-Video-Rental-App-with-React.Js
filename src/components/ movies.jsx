@@ -98,7 +98,7 @@ class Movies extends Component {
 
         let filtered = allMovies;
         if(searchQuery)
-        filtered = allMovies.filter(m =>m.title.toLowercase().startsWith(searchQuery.toLowerCase()));
+        filtered = allMovies.filter(m =>m.title.toLowerCase().startsWith(searchQuery.toLowerCase()));
 
 
          else if(selectedGenre && selectedGenre._id) 

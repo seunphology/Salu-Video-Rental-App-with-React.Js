@@ -24,8 +24,8 @@ class LoginForm extends Form {
     try {
         const {data} = this.state;
       await auth.login(data.username, data.password); // this stores the jason web token which is usually the response data sent from server when a user successfully logs in. data has already been declared,so i am giving  returned data another name;jwt
-    
-    window.location = '/' // This reloads the lifecycle of the application (app.js is re-mounted) by taking the user back to any other route...in this case,homepage route "/"
+    const { state } = this.props.location;
+    window.location = state ? state.from.pathname : '/'; // This reloads the lifecycle of the application (app.js is re-mounted) by taking the user back to any other route...in this case,homepage route "/"
     } catch (ex) {
 
         if (ex.response && ex.response.status === 400) {

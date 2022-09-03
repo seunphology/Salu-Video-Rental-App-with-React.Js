@@ -28,7 +28,7 @@ class Movies extends Component {
 
         selectedGenre: null,
 
-        sortColumn: {path: 'title', order: 'asc'}
+        sortColumn: {path: "title", order: "asc"}
 
         
     };
@@ -81,7 +81,7 @@ class Movies extends Component {
     };
 
     handleSearch = query => {
-        this.setState({searchQuery: query, selectedGenre: null, currentPage: 1});
+        this.setState({searchQuery: query, selectedGenre: null, currentPage:1});
     };
 
     handleSort = sortColumn => {
@@ -114,6 +114,8 @@ class Movies extends Component {
 
         const {pageSize, currentPage,sortColumn,searchQuery } = this.state;
 
+        const {user} = this.props;
+
         if (count===0)
         return <p>There are no movies in the database</p>
 
@@ -131,7 +133,9 @@ class Movies extends Component {
 
                 
                 <div className="col"> 
-                <Link to="/movies/new" className="btn btn-primary" style={{marginBottom: 20}}>New Movie</Link>
+             { user &&  <Link to="/movies/new" className="btn btn-primary" style={{marginBottom: 20}}>New Movie</Link> }   
+
+             
                 
                 <p>Showing {totalCount} movies in the database</p>
                 <SearchBox value= {searchQuery} onChange={this.handleSearch} />

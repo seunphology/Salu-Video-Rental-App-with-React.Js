@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route,Redirect, Switch } from "react-router-dom";
+import { Route,Redirect,Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Movies from "./components/ movies";
 import Customers from "./components/customers";
@@ -42,6 +42,8 @@ class App extends Component {
       <main className="container">
 
         <Switch>
+
+        
         
         <Route path="/register" component={RegisterForm}/>
         <Route path="/login" component={LoginForm}/>
@@ -55,10 +57,10 @@ class App extends Component {
         <Redirect from="/" exact to="/movies" />
         <Redirect to="/not-found" />
 
-        </Switch>
-
-
         
+
+
+        </Switch>
 
       
       
